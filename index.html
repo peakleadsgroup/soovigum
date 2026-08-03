@@ -13,7 +13,7 @@
   <style>
     :root {
       --bg: #f3f1f6;
-      --bg-hero: #e8dff2;
+      --bg-hero: #ffffff;
       --surface: #ffffff;
       --text: #1a1228;
       --muted: #5c5368;
@@ -52,7 +52,7 @@
 
     /* —— Hero —— */
     .hero {
-      background: linear-gradient(165deg, #f3eafb 0%, #e4d4f4 55%, #ebe0f6 100%);
+      background: #ffffff;
       border-radius: 0;
       padding: 28px 16px 20px;
       position: relative;
@@ -60,12 +60,7 @@
     }
 
     .hero::before {
-      content: "";
-      position: absolute;
-      inset: -40% 20% auto -30%;
-      height: 70%;
-      background: radial-gradient(ellipse, rgba(92, 45, 145, 0.14), transparent 70%);
-      pointer-events: none;
+      content: none;
     }
 
     .hero-visual {
