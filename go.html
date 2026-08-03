@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Redirecting to checkout…</title>
+  <script>
+    (function () {
+      var STRIPE_URL = "https://buy.stripe.com/6oUcN40Vy9MJ6zk4uTbbG00";
+      var ALLOWED = { drew: true, daniel: true, bennett: true };
+      var UTM_KEYS = [
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_term",
+        "utm_content"
+      ];
+
+      var params = new URLSearchParams(window.location.search);
+      var src = (params.get("src") || "").toLowerCase();
+      if (!ALLOWED[src]) src = "drew";
+
+      var url = new URL(STRIPE_URL);
+      url.searchParams.set("client_reference_id", src);
+
+      UTM_KEYS.forEach(function (key) {
+        var value = params.get(key);
+        if (value) url.searchParams.set(key, value);
+      });
+
+      window.location.replace(url.toString());
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting to checkout…</p>
+  <p><a id="fallback" href="https://buy.stripe.com/6oUcN40Vy9MJ6zk4uTbbG00?client_reference_id=drew">Continue to payment</a></p>
+  <script>
+    (function () {
+      var a = document.getElementById("fallback");
+      var params = new URLSearchParams(window.location.search);
+      var src = (params.get("src") || "").toLowerCase();
+      if (src !== "drew" && src !== "daniel" && src !== "bennett") src = "drew";
+      a.href = "https://buy.stripe.com/6oUcN40Vy9MJ6zk4uTbbG00?client_reference_id=" + encodeURIComponent(src);
+    })();
+  </script>
+</body>
+</html>
